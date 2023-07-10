@@ -4,11 +4,11 @@ import Home from './screens/Home';
 import Login from './screens/Login';
 import Register from './screens/Register';
 import Categories from './screens/Categories';
-import Prodcuts from './screens/Products';
 import ProductDetails from './screens/ProductDetails';
 import ProductCreate from './screens/ProductCreate';
 import ProductEdit from './screens/ProductEdit';
 import CartDetail from './screens/CartDetail';
+import Products from './screens/Products';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
           <Route path='/login' element={<Login />}></Route>
           <Route path='/register' element={<Register />}></Route>
           <Route path='/categories' element={<Categories />}></Route>
-          <Route path='/products' element={<Prodcuts />}></Route>
+          <Route path='/products' element={<Products />}></Route>
           <Route path='/products/:id' element={<ProductDetails />}></Route>
           <Route path='/products/create' element={<ProductCreate />}></Route>
           <Route path='/products/edit/:id' element={<ProductEdit />}></Route>

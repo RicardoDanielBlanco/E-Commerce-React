@@ -1,7 +1,7 @@
-function Prodcuts(){
+function Products(){
     return(
-        <h1>Prodcuts</h1>
+        <h1>Products</h1>
     )
 }
 
-export default Prodcuts;
+export default Products;
