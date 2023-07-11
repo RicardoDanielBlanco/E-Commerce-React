@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import { Link } from "react-router-dom";
+import {useQuery} from 'react-query';
+import Loading from '../../components/loading';
+import Error from '../../components/Error';
 
 interface category {
   id : number;
@@ -9,43 +11,22 @@ interface category {
 }
 
 function Categories(){
-  const [categories, setCategories] = useState([])
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(true)
-
+  const URL = 'https://api.escuelajs.co/api/v1/categories/'
   async function fetchData(){
-    try {
-      const response = await fetch('https://api.escuelajs.co/api/v1/categories')
-      const json = await response.json()
-
-      if (json.message){
-        setLoading(false)
-        setError(json.name)
-      } else {
-        setCategories(json)
-        setLoading(false)
-        setError(null)
-      }
-    } catch (e){
-      console.error("error", e)
-    }
+    const response = await fetch(URL)
+    const data = await response.json()
+    return data;
   }
 
-  useEffect(()=>{
-    fetchData();
-  },[] )
-  
-  if (loading) {
-    return (<h2>Loading ...</h2>)
+  const {data : categories, error, isLoading} = useQuery(['categories'], fetchData)
+
+
+  if (isLoading) {
+    return (<Loading props="categories"></Loading>)
   }
 
   if (error) {
-    return (
-      <>
-      <h2>Error en la petición</h2>
-      <h3>{error}</h3>
-      </>
-    )
+    return (<Error props={error}></Error>)
   }
 
   if (categories) {
@@ -56,15 +37,17 @@ function Categories(){
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima veniam suscipit dolorem sequi voluptate laborum ex! Quia illo consectetur distinctio numquam, accusantium nam, ipsum neque, id nulla dolores itaque a.</p>
             <button>Shop all</button>
           </div>
-          <Link to={'/products'} className={styles.conteiner}>
+          <div className={styles.conteiner}>
             {categories && (categories.map((category : category)=>(
-              <div key={category.id} className={styles.cardCategory}>
-                <h3>{category.name}</h3>
-                <img src={category.image} alt="" />
-              </div>
+              <Link key={category.id} to={'/products'} state={category.id}>
+                <div className={styles.cardCategory}>
+                  <h3>{category.name}</h3>
+                  <img src={category.image} alt="" />
+                </div>
+              </Link>
             )))
             }
-          </Link>
+          </div>
           </>
     )
   }
