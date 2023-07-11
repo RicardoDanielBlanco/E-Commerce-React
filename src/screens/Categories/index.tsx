@@ -56,15 +56,17 @@ function Categories(){
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima veniam suscipit dolorem sequi voluptate laborum ex! Quia illo consectetur distinctio numquam, accusantium nam, ipsum neque, id nulla dolores itaque a.</p>
             <button>Shop all</button>
           </div>
-          <Link to={'/products'} className={styles.conteiner}>
+          <div className={styles.conteiner}>
             {categories && (categories.map((category : category)=>(
-              <div key={category.id} className={styles.cardCategory}>
-                <h3>{category.name}</h3>
-                <img src={category.image} alt="" />
-              </div>
+              <Link to={'/products'} state={category.id}>
+                <div key={category.id} className={styles.cardCategory}>
+                  <h3>{category.name}</h3>
+                  <img src={category.image} alt="" />
+                </div>
+              </Link>
             )))
             }
-          </Link>
+          </div>
           </>
     )
   }
