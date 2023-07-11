@@ -1,5 +1,6 @@
 import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {QueryClient, QueryClientProvider} from 'react-query'
 import Home from './screens/Home';
 import Login from './screens/Login';
 import Register from './screens/Register';
@@ -10,9 +11,12 @@ import ProductEdit from './screens/ProductEdit';
 import CartDetail from './screens/CartDetail';
 import Products from './screens/Products';
 
+const queryClient = new QueryClient()
+
 function App() {
   return (
     <>
+    <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />}></Route>
@@ -26,6 +30,7 @@ function App() {
           <Route path='/cart-detail' element={<CartDetail />}></Route>
         </Routes>
       </BrowserRouter>
+    </QueryClientProvider>
     </>
   )
 }
