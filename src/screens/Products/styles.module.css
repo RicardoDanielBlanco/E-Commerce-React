@@ -34,6 +34,26 @@ h1 {
     height: auto;
 }
 
+.filtersBox h4 {
+    color: black;
+    font-family: Public Sans;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30px;
+    letter-spacing: -0.55px;
+}
+
+.filtersBox p {
+    color: #000;
+    font-family: Public Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: -0.4px;
+}
+
 .productsList {
     display: flex;
     flex-wrap: wrap;

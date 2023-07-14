@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import {useQuery} from 'react-query';
 import Loading from '../../components/loading';
 import Error from '../../components/Error';
+import { fetchDataCategory } from '../../hooks/useFetch';
 
 interface category {
   id : number;
@@ -11,15 +12,7 @@ interface category {
 }
 
 function Categories(){
-  const URL = 'https://api.escuelajs.co/api/v1/categories/'
-  async function fetchData(){
-    const response = await fetch(URL)
-    const data = await response.json()
-    return data;
-  }
-
-  const {data : categories, error, isLoading} = useQuery(['categories'], fetchData)
-
+  const {data : categories, error, isLoading} = useQuery(['categories'], fetchDataCategory)
 
   if (isLoading) {
     return (<Loading props="categories"></Loading>)

@@ -1,0 +1,28 @@
+.filterCheckBox{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    justify-content: center;
+}
+
+.filterCheckBox label{
+    color: #000;
+    font-family: Public San;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: -0.4px;
+}
+
+.filterCheckBox input[type="checkbox"] {
+    width: 20px;
+    height: 19.615px;
+    flex-shrink: 0;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
