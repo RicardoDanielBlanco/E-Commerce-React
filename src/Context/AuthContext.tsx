@@ -1,6 +1,10 @@
-import {ReactNode, createContext, useEffect, useState} from 'react';
+import {ReactNode, createContext, useState} from 'react';
 
-export const AuthContext = createContext<AuthContextProps>({})
+export const AuthContext = createContext<AuthContextProps>({
+  user: null,
+  setUser: () => {},
+  role: null,
+  setRole: () => {},})
 
 interface AuthProviderProps {
     children: ReactNode;
@@ -14,15 +18,8 @@ interface AuthContextProps {
 }
 
 function AuthProvider({children}:AuthProviderProps){
-    const [user, setUser] = useState(null)
-    const [role, setRole] = useState(null)
-
-    useEffect(() => {
-        const accessToken = localStorage.getItem('accessToken');
-        if (accessToken) {
-          setUser(accessToken);
-        }
-      }, []);
+    const [user, setUser] = useState<string | null>(localStorage.getItem('accessToken'))
+    const [role, setRole] = useState<string | null>(null)
 
     const value = {user, setUser, role, setRole}
 
