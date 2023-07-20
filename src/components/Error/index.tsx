@@ -1,9 +1,9 @@
-interface props {
+interface propsError {
   message : string
 }
 
 
-function Error({ message } : props){
+function Error({ message } :propsError){
   return (
     <>
     <h2>Error loading information. We will solve it as soon as possible.</h2>

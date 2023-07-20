@@ -5,7 +5,7 @@ import Loading from '../../components/loading';
 import Error from '../../components/Error';
 import { fetchDataProduct } from '../../hooks/useFetch';
 import FilterBox from '../../components/filterBox';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 
 interface product {
   id : number;
@@ -15,15 +15,10 @@ interface product {
 }
 
 function Products(){
-  const [selectedOption, setSelectedOption] = useState('');
   const location = useLocation();
   const category  = location.state;
-  
-  useEffect(() => {
-    if (category) {
-      setSelectedOption(category);
-    }
-  }, [category]);
+  const [selectedOption, setSelectedOption] = useState(category);
+
   
   const URL = 'https://api.escuelajs.co/api/v1/products/?offset=0&limit=9'
   const {data : products, error, isLoading} = useQuery(['categories', selectedOption], () => fetchDataProduct(URL, selectedOption))
@@ -37,7 +32,7 @@ function Products(){
   }
 
   if (error) {
-    return (<Error props={error}></Error>)
+    return <Error props={error} />;
   }
 
   return(

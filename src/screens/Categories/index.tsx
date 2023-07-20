@@ -13,6 +13,8 @@ interface category {
   image : string;
 }
 
+
+
 function Categories(){
   const {data : categories, error, isLoading} = useQuery(['categories'], fetchDataCategory)
   const authContext = useContext(AuthContext);
