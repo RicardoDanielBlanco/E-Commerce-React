@@ -1,0 +1,58 @@
+.loginBox{
+    height: 289px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px;
+    margin: 96px auto 27px auto;
+    box-sizing: border-box;
+}
+
+.loginBox h4 {
+    color: var(--colors-base-color-6, #111);
+    /* Heading 04 */
+    font-family: Public Sans;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 30px; /* 136.364% */
+    letter-spacing: -0.55px;
+    margin: 0px;
+}
+
+.loginBox p {
+    margin: 8px 0px;
+}
+
+.loginBox form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.loginBox input {
+    width: 398px;
+    height: 40px;
+    margin: 5px 0px;
+}
+
+.loginBox input::placeholder{
+    color: var(--colors-grey-grey-2, #A9ABBD);
+    font-family: Public Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.3px; 
+}
+
+.loginBox button {
+    display: flex;
+    margin: 8px auto;
+    width: 194px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}

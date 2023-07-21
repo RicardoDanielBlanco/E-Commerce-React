@@ -23,7 +23,6 @@ function Login(){
         authContext.setRole(userProfile.role)
         navigate(from, {replace: true});
         localStorage.setItem('accessToken', userData);
-        console.log(authContext.user)
       } catch (error) {
         console.error('Error al iniciar sesión:', error);
       }

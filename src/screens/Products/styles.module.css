@@ -1,18 +1,17 @@
 .rectangule6{
-    width: 1400px;
     height: 216px;
     text-align: left;
     background-color: #0D0D0D;
-    padding: 0px 145px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-left: 10vw;
+    padding-right: 10vw;  
 }
 
 .textBox{
     width: 476px;
     height: 78px;
-    /* text-align: left; */
 }
 
 h1 {
@@ -26,11 +25,13 @@ h1 {
 
 .blexBox{
     display: flex;
+    padding-left: 10vw;
+    padding-right: 10vw;
 }
 
 
 .filtersBox{
-    width: 425px;
+    width: 320px;
     height: auto;
 }
 
@@ -58,7 +59,8 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    width: 835px;
+    width: auto;
+    justify-content:right;
 }
 
 .cardProducList {

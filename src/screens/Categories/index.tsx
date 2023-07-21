@@ -31,7 +31,7 @@ function Categories(){
   if (categories) {
     return(
           <>
-          <div>
+          <div className={styles.conteinerTitle}>
             <h2>Categories</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima veniam suscipit dolorem sequi voluptate laborum ex! Quia illo consectetur distinctio numquam, accusantium nam, ipsum neque, id nulla dolores itaque a.</p>
             <button>Shop all</button>

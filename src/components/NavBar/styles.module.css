@@ -1,0 +1,14 @@
+
+ul{
+  padding-left: 0px;
+}
+
+.NavOptions ul, .NavCartLog ul{
+  display: flex;
+  gap: 32px;
+}
+
+.NavOptions li, .NavCartLog li{
+  margin: 0px ;
+  list-style: none;
+}
