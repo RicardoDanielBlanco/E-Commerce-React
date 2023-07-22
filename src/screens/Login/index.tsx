@@ -6,42 +6,45 @@ import axios from 'axios';
 import { AuthContext } from '../../Context/AuthContext';
 import { getUserProfile } from '../../hooks/useFetch';
 
+interface userLoginData {
+  email : string;
+  password : string
+}
+
 function Login(){
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
   const authContext = useContext(AuthContext);
   
-  const signinMutation = useMutation((data)=>{
-    return axios.post('https://api.escuelajs.co/api/v1/auth/login', data)
+  const signinMutation = useMutation((user:userLoginData)=>{
+    return axios.post('https://api.escuelajs.co/api/v1/auth/login', user)
   }, {
     onSuccess: async (data) => {
       try {
         const userData = data.data.access_token
         authContext.setUser(userData);
-        const userProfile = await getUserProfile(data.data.access_token);
+        const userProfile = await getUserProfile(userData);
         authContext.setRole(userProfile.role)
         navigate(from, {replace: true});
         localStorage.setItem('accessToken', userData);
+        localStorage.setItem('roleProfile', userProfile.role);
       } catch (error) {
         console.error('Error al iniciar sesión:', error);
       }
     },
   });
 
-
-
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const email = formData.get('email');
-    const password = formData.get('password');
-    const user = {email, password};
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    const user: userLoginData = {email, password};
 
     signinMutation.mutate(user)
-  }
-  
+  }  
   
   return(
     <>

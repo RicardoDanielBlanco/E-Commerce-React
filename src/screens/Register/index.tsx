@@ -4,12 +4,19 @@ import axios from 'axios';
 import { FormEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+interface userProfileData {
+  name : string;
+  email : string;
+  password : string;
+  avatar : string
+}
+
 function Register(){
     const from = '/login';
     const navigate = useNavigate();
     const [showMessage, setShowMessage] = useState(false);
-    const registerMutation = useMutation((data)=>{
-        return axios.post('https://api.escuelajs.co/api/v1/users/', data)
+    const registerMutation = useMutation((user: userProfileData )=>{
+        return axios.post('https://api.escuelajs.co/api/v1/users/', user)
       },{
         onSuccess(data){
             console.log(data)
@@ -25,11 +32,11 @@ function Register(){
         event.preventDefault();
     
         const formData = new FormData(event.currentTarget);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const password = formData.get('password');
-        const avatar = formData.get('avatar');
-        const user = {name, email, password, avatar};
+        const name = formData.get('name') as string;
+        const email = formData.get('email') as string;
+        const password = formData.get('password') as string;
+        const avatar = formData.get('avatar') as string;
+        const user : userProfileData = {name, email, password, avatar};
     
         registerMutation.mutate(user)
       }

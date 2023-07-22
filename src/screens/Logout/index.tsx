@@ -13,6 +13,8 @@ export default function Logout(){
   function handleButton(){
     authContext.setUser(null);
     localStorage.removeItem('accessToken');
+    authContext.setRole(null);
+    localStorage.removeItem('roleProfile');
     setShowMessage(true);
     setTimeout(() => {
       navigate(from, { replace: true });
@@ -24,7 +26,7 @@ export default function Logout(){
     if (showMessage) {
       timer = setTimeout(() => {
         setShowMessage(false);
-      }, 2000);
+      }, 3000);
     }
     return () => clearTimeout(timer);
   }, [showMessage]);
@@ -37,6 +39,4 @@ export default function Logout(){
       {showMessage && <p>Logout successful. Feel free to return anytime.</p>}
     </div>
   )
-
-
 }
