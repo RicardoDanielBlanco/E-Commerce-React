@@ -58,10 +58,10 @@ function Register(){
           <h4>Welcome</h4>
           <p>Register by completing the information</p>
           <form onSubmit={handleSubmit}>
-            <input type="text" name="name" id="name" placeholder="Username"/>
-            <input type="email" name="email" id="email" placeholder="Email"/>
-            <input type="password" name="password" id="password" placeholder="Password"/>
-            <input type="text" name="avatar" id="avatar" placeholder="Link you image"/>
+            <input type="text" name="name" id="name" placeholder="Username" required/>
+            <input type="email" name="email" id="email" placeholder="Email" required/>
+            <input type="password" name="password" id="password" placeholder="Password" required/>
+            <input type="text" name="avatar" id="avatar" placeholder="Link you image" required/>
             <button type="submit">Register</button>
           </form>
         </div>

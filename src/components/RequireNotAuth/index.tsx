@@ -2,15 +2,15 @@ import { Navigate } from "react-router-dom";
 import { AuthContext } from '../../Context/AuthContext';
 import { useContext } from "react";
 
-function RequireRole({ children }: {children: JSX.Element;}){
+function RequireNotAuth({ children }: {children: JSX.Element;}){
     const authContext = useContext(AuthContext);
 
-    if (authContext.role ==="admin"){
-        return children;
+    if (authContext.user){
+        return <Navigate to='/' replace />
     }
-    
-    return <Navigate to='/' replace />
+
+    return children;
 
 }
 
-export default RequireRole;
+export default RequireNotAuth;

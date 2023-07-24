@@ -19,7 +19,7 @@ interface AuthContextProps {
 
 function AuthProvider({children}:AuthProviderProps){
     const [user, setUser] = useState<string | null>(localStorage.getItem('accessToken'))
-    const [role, setRole] = useState<string | null>(null)
+    const [role, setRole] = useState<string | null>(localStorage.getItem('roleProfile'))
 
     const value = {user, setUser, role, setRole}
 
