@@ -6,6 +6,7 @@ import Error from '../../components/Error';
 import { fetchDataProduct } from '../../hooks/useFetch';
 import FilterBox from '../../components/filterBox';
 import { ChangeEvent, useState } from 'react';
+import { KEY_CATEGORY, URL_PRODUCT } from '../../global/constant';
 
 interface product {
   id : number;
@@ -19,9 +20,7 @@ function Products(){
   const category  = location.state;
   const [selectedOption, setSelectedOption] = useState(category);
 
-  
-  const URL = 'https://api.escuelajs.co/api/v1/products/?offset=0&limit=9'
-  const {data : products, error, isLoading} = useQuery(['categories', selectedOption], () => fetchDataProduct(URL, selectedOption))
+  const {data : products, error, isLoading} = useQuery([KEY_CATEGORY, selectedOption], () => fetchDataProduct(URL_PRODUCT, selectedOption))
 
   function handleCheckboxChange(event: ChangeEvent<HTMLInputElement>){
     setSelectedOption(event.target.value)

@@ -5,6 +5,7 @@ import { useMutation } from 'react-query';
 import axios from 'axios';
 import { AuthContext } from '../../Context/AuthContext';
 import { getUserProfile } from '../../hooks/useFetch';
+import { URL_AUTH_LOGIN } from '../../global/constant';
 
 interface userLoginData {
   email : string;
@@ -18,7 +19,7 @@ function Login(){
   const authContext = useContext(AuthContext);
   
   const signinMutation = useMutation((user:userLoginData)=>{
-    return axios.post('https://api.escuelajs.co/api/v1/auth/login', user)
+    return axios.post(URL_AUTH_LOGIN, user)
   }, {
     onSuccess: async (data) => {
       try {

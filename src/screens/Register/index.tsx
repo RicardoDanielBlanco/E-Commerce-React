@@ -3,6 +3,7 @@ import styles from './styles.module.css'
 import axios from 'axios';
 import { FormEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { URL_USER } from '../../global/constant';
 
 interface userProfileData {
   name : string;
@@ -16,7 +17,7 @@ function Register(){
     const navigate = useNavigate();
     const [showMessage, setShowMessage] = useState(false);
     const registerMutation = useMutation((user: userProfileData )=>{
-        return axios.post('https://api.escuelajs.co/api/v1/users/', user)
+        return axios.post(URL_USER, user)
       },{
         onSuccess(data){
             console.log(data)

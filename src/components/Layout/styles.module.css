@@ -11,7 +11,7 @@
 }
 
 header {
-    max-width: 100vw;
+    width: 100vw;
     height: 60px;
     background-color: rgba(13, 13, 13, 1);
     margin-bottom: 1px; 

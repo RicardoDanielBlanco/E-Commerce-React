@@ -6,6 +6,7 @@ import Error from '../../components/Error';
 import { fetchDataCategory } from '../../hooks/useFetch';
 import { AuthContext } from '../../Context/AuthContext';
 import { useContext } from 'react';
+import { KEY_CATEGORY } from '../../global/constant';
 
 interface category {
   id : number;
@@ -16,7 +17,7 @@ interface category {
 
 
 function Categories(){
-  const {data : categories, error, isLoading} = useQuery(['categories'], fetchDataCategory)
+  const {data : categories, error, isLoading} = useQuery([KEY_CATEGORY], fetchDataCategory)
   const authContext = useContext(AuthContext);
   console.log(authContext.user)
 

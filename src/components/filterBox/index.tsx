@@ -3,6 +3,7 @@ import Loading from "../loading"
 import Error from '../../components/Error';
 import { fetchDataCategory } from "../../hooks/useFetch";
 import styles from './styles.module.css'
+import { KEY_FILTER } from "../../global/constant";
 
 interface FilterBoxProps {
   handleCheckboxChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -15,7 +16,7 @@ interface filter{
 }
 
 function FilterBox({handleCheckboxChange, selectedOption}:FilterBoxProps){
-  const {data : filters, error, isLoading} = useQuery(['filters'], fetchDataCategory)
+  const {data : filters, error, isLoading} = useQuery([KEY_FILTER], fetchDataCategory)
 
   if (isLoading) {
     return (<Loading props="categories" />)
@@ -45,10 +46,8 @@ function FilterBox({handleCheckboxChange, selectedOption}:FilterBoxProps){
       }
       </div>
       </>
-
       )
   }
-
 }
 
 export default FilterBox;
