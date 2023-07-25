@@ -1,12 +1,14 @@
 import styles from './styles.module.css'
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loading from '../../components/loading';
 import Error from '../../components/Error';
 import { fetchDataProduct } from '../../hooks/useFetch';
 import FilterBox from '../../components/filterBox';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import { KEY_CATEGORY, URL_PRODUCT } from '../../global/constant';
+import { AuthContext } from '../../Context/AuthContext';
+
 
 interface product {
   id : number;
@@ -19,7 +21,7 @@ function Products(){
   const location = useLocation();
   const category  = location.state;
   const [selectedOption, setSelectedOption] = useState(category);
-
+  const authContext = useContext(AuthContext);
   const {data : products, error, isLoading} = useQuery([KEY_CATEGORY, selectedOption], () => fetchDataProduct(URL_PRODUCT, selectedOption))
 
   function handleCheckboxChange(event: ChangeEvent<HTMLInputElement>){
@@ -55,6 +57,12 @@ function Products(){
                 <img src={product.images} alt={`Foto ilustrativa de ${product.title}`} />
                 <h3>{product.title}</h3>
                 <p>{`$${product.price}`}</p>
+                {authContext.role == 'admin' && (
+                <div className={styles.adminButtons}>
+                  <Link to={`/products/edit/${product.id}`}>Edit</Link>
+                  <button>Delete</button>
+                </div>
+                ) }
               </div>
             )
           }))}

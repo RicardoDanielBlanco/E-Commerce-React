@@ -16,6 +16,8 @@ import { Layout } from './components/Layout';
 import Logout from './screens/Logout';
 import RequireNotAuth from './components/RequireNotAuth';
 import RequireRole from './components/RequireRole';
+import CategoriesCreate from './screens/CategoriesCreate';
+import CategoriesEdit from './screens/CategoriesEdit';
 
 const queryClient = new QueryClient()
 
@@ -36,6 +38,8 @@ function App() {
               <Route path='/products/:id' element={<ProductDetails />}/>
               <Route path='/products/create' element={<RequireRole><ProductCreate /></RequireRole>}/>
               <Route path='/products/edit/:id' element={<RequireRole><ProductEdit /></RequireRole> }/>
+              <Route path='/categories/create' element={<RequireRole><CategoriesCreate /></RequireRole>}/>
+              <Route path='/categories/edit/:id' element={<RequireRole><CategoriesEdit /></RequireRole> }/>
               <Route path='/cart-detail' element={<RequireAuth><CartDetail /></RequireAuth>} />
             </Route>
           </Routes>

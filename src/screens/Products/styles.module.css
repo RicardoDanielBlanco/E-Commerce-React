@@ -64,7 +64,7 @@ h1 {
 }
 
 .cardProducList {
-    height: 331px;
+    min-height: 331px;
     width: 265px;
     text-align: left;
 }
@@ -87,4 +87,38 @@ h1 {
 
 .cardProducList p {
     font-weight: 400;
+}
+
+.adminButtons {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    text-align: center;
+}
+
+.adminButtons a, .adminButtons button{
+    width: 50%;
+    height: 40px;
+    text-align: center;
+    color: white;
+    border: 2px solid #EFF2F6;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    line-height: 40px;
+    border-radius: 5px;
+}
+
+.adminButtons a {
+    background-color: rgb(108, 220, 155);
+}
+
+.adminButtons button {
+    background-color: rgb(244, 97, 97);
+}
+
+.adminButtons a:hover, .adminButtons button:hover{
+    border: 0px solid rgb(0, 0, 0);
+    color: white;
+    font-size: 17px;
 }
