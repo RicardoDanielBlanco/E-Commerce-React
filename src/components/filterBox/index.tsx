@@ -23,7 +23,7 @@ function FilterBox({handleCheckboxChange, selectedOption}:FilterBoxProps){
   }
   
   if (error) {
-    return (<Error props={error} />)
+    return (<Error message={error} />)
   }
 
   if (filters){

@@ -1,5 +1,5 @@
 interface propsError {
-  message : string
+  message : any
 }
 
 

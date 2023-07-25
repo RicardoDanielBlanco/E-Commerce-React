@@ -31,7 +31,7 @@ function Products(){
   }
 
   if (error) {
-    return <Error props={error} />;
+    return <Error message={error} />;
   }
 
   return(

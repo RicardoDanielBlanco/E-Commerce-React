@@ -26,7 +26,7 @@ function Categories(){
   }
 
   if (error) {
-    return (<Error props={error}></Error>)
+    return (<Error message={error}></Error>)
   }
 
   if (categories) {
