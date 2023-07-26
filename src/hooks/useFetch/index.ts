@@ -2,7 +2,6 @@ import axios from "axios";
 import { URL_AUTH_PROFILE, URL_CATEGORY } from "../../global/constant";
 
 
-
 export async function fetchDataCategory(){
   const response = await fetch(URL_CATEGORY)
   const data = await response.json()

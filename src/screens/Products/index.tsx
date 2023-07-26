@@ -1,13 +1,16 @@
 import styles from './styles.module.css'
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loading from '../../components/loading';
 import Error from '../../components/Error';
 import { fetchDataProduct } from '../../hooks/useFetch';
 import FilterBox from '../../components/filterBox';
 import { ChangeEvent, useContext, useState } from 'react';
-import { KEY_CATEGORY, URL_PRODUCT } from '../../global/constant';
+import { KEY_PRODUCT, URL_PRODUCT } from '../../global/constant';
 import { AuthContext } from '../../Context/AuthContext';
+import ButtonsEdDel from '../../components/ButtonsEdDel';
+import { Modal } from '../../components/Modal';
+import ModalDetele from '../../components/ModalDetele';
 
 
 interface product {
@@ -21,8 +24,11 @@ function Products(){
   const location = useLocation();
   const category  = location.state;
   const [selectedOption, setSelectedOption] = useState(category);
+  const [openModal, setOpenModal] = useState(false)
   const authContext = useContext(AuthContext);
-  const {data : products, error, isLoading} = useQuery([KEY_CATEGORY, selectedOption], () => fetchDataProduct(URL_PRODUCT, selectedOption))
+  const [id, setId] = useState<number | null>(null)
+  
+  const {data : products, error, isLoading, refetch} = useQuery([KEY_PRODUCT, selectedOption], () => fetchDataProduct(`${URL_PRODUCT}?offset=0&limit=12`, selectedOption))
 
   function handleCheckboxChange(event: ChangeEvent<HTMLInputElement>){
     setSelectedOption(event.target.value)
@@ -57,16 +63,16 @@ function Products(){
                 <img src={product.images} alt={`Foto ilustrativa de ${product.title}`} />
                 <h3>{product.title}</h3>
                 <p>{`$${product.price}`}</p>
-                {authContext.role == 'admin' && (
-                <div className={styles.adminButtons}>
-                  <Link to={`/products/edit/${product.id}`}>Edit</Link>
-                  <button>Delete</button>
-                </div>
-                ) }
+                {authContext.role == 'admin' && <ButtonsEdDel URL={`/products/edit/${product.id}`} setOpenModal={setOpenModal} id={product.id} setId={setId}/> }
               </div>
             )
           }))}
         </div>
+        {openModal && 
+        <Modal>
+          <ModalDetele setOpenModal={setOpenModal} URL={URL_PRODUCT} id={id} afterDelete={() => refetch()} />
+        </Modal>
+        }
         <button>Load more products</button>
       </div>
     </div>

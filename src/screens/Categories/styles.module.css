@@ -15,17 +15,18 @@
     padding-left: 10vw;
     padding-right: 10vw;
     margin: 20px 0px;
+    gap: 25px;
 }
 
 .cardCategory {
     width: 368px;
     height: 518px;
-    margin:12.5px 12.5px;
+    margin-bottom: 25px;
     background-color: rgb(229, 229, 229);
 }
 
 .cardCategory img {
-    height: 470px;
+    height: 450px;
     width: 100%;
     object-fit: cover;
 }
