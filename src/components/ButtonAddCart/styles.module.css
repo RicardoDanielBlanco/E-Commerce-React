@@ -1,0 +1,12 @@
+.buttonAdd{
+    color:rgba(255, 255, 255, 1);
+    background-color: rgba(13, 13, 13, 1);
+    width: 198px;
+    height: 50px;
+    flex-shrink: 0;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: -0.4px;
+}

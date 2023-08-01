@@ -1,5 +1,5 @@
 import styles from './styles.module.css'
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import Loading from '../../components/loading';
 import Error from '../../components/Error';
@@ -60,9 +60,11 @@ function Products(){
           {products && (products.map((product : product)=>{
             return (
               <div key={product.id} className={styles.cardProducList}>
-                <img src={product.images} alt={`Foto ilustrativa de ${product.title}`} />
-                <h3>{product.title}</h3>
-                <p>{`$${product.price}`}</p>
+                <Link to={`/products/${product.id}`}>
+                  <img src={product.images} alt={`Foto ilustrativa de ${product.title}`} />
+                  <h3>{product.title}</h3>
+                  <p>{`$${product.price}`}</p>
+                </Link>
                 {authContext.role == 'admin' && <ButtonsEdDel URL={`/products/edit/${product.id}`} setOpenModal={setOpenModal} id={product.id} setId={setId}/> }
               </div>
             )

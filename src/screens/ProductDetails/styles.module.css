@@ -1,0 +1,28 @@
+
+.boxProduct{
+    width: 100vw;
+    display: flex;
+    padding-top: 88px;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    box-sizing: border-box;
+}
+
+.boxImage{
+    background-color: aqua;
+    width: 50%;
+    height: auto;
+    display: flex;
+}
+
+.image{
+    width: 483px;
+    height: 548px;
+}
+
+.boxDescription{
+    background-color: blueviolet;
+    width: 50%;
+    height: auto;
+    display: flex;
+}
