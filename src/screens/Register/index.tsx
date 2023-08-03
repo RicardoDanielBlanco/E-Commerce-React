@@ -44,7 +44,6 @@ function Register(){
 
     useEffect(() => {
       let timer: number;
-      // let timer: NodeJS.Timeout;
       if (showMessage) {
         timer = setTimeout(() => {
           setShowMessage(false);

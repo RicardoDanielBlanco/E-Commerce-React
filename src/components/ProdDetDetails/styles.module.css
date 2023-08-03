@@ -1,0 +1,51 @@
+
+.boxDescription{
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 0px 80px;
+    box-sizing: border-box;
+}
+
+.titleBox h2{
+    color: #000;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 48px;
+    letter-spacing: -1.08px;
+    margin: 0px 2px;
+}
+
+.boxDescription p {
+    color: #000;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.51px;
+    margin: 0;
+}
+
+.titleBox p{
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 36px; /* 150% */
+    letter-spacing: -0.72px;
+}
+
+.titleBox{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.descBox{
+    width: 357px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
