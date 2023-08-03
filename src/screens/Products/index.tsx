@@ -11,13 +11,16 @@ import { AuthContext } from '../../Context/AuthContext';
 import ButtonsEdDel from '../../components/ButtonsEdDel';
 import { Modal } from '../../components/Modal';
 import ModalDetele from '../../components/ModalDetele';
+import AddProductButton from '../../components/AddProductButton';
+import {CartContext} from '../../Context/CartContext';
 
 
-interface product {
+export interface product {
   id : number;
   images : string;
   title : string;
   price : number;
+  amount ?: number;
 }
 
 function Products(){
@@ -26,6 +29,7 @@ function Products(){
   const [selectedOption, setSelectedOption] = useState(category);
   const [openModal, setOpenModal] = useState(false)
   const authContext = useContext(AuthContext);
+  const cartContext = useContext(CartContext);
   const [id, setId] = useState<number | null>(null)
   
   const {data : products, error, isLoading, refetch} = useQuery([KEY_PRODUCT, selectedOption], () => fetchDataProduct(`${URL_PRODUCT}?offset=0&limit=12`, selectedOption))
@@ -61,10 +65,11 @@ function Products(){
             return (
               <div key={product.id} className={styles.cardProducList}>
                 <Link to={`/products/${product.id}`}>
-                  <img src={product.images} alt={`Foto ilustrativa de ${product.title}`} />
+                  <img src={product.images} alt={product.title} />
                   <h3>{product.title}</h3>
                   <p>{`$${product.price}`}</p>
                 </Link>
+                <AddProductButton cartList={cartContext.cartList} product={product} setCartList={cartContext.setCartList} user={authContext.user} setTotalPrice={cartContext.setTotalPrice} />
                 {authContext.role == 'admin' && <ButtonsEdDel URL={`/products/edit/${product.id}`} setOpenModal={setOpenModal} id={product.id} setId={setId}/> }
               </div>
             )

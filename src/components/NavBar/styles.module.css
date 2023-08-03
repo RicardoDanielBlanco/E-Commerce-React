@@ -1,10 +1,12 @@
 
 ul{
   padding-left: 0px;
+  margin-top: 0px;
 }
 
 .NavOptions ul, .NavCartLog ul{
   display: flex;
+  align-items: center;
   gap: 32px;
 }
 

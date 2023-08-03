@@ -1,17 +1,38 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import styles from './styles.module.css'
+import { CartItem } from "../../Context/CartContext";
+import { useUpdateCart } from "../../hooks/useAddCart";
 
 interface AddCartProps{
   count : number;
-  price : number
+  priceDet : number
+  cartList : CartItem[];
+  setCartList: Dispatch<SetStateAction<CartItem[]>>;
+  setTotalPrice: Dispatch<SetStateAction<number>>;
+  productDet : {
+    id : number;
+    title : string;
+    price : number;
+    description : string;
+    amount: number;
+  }
 }
 
-function AddCart({count, price} : AddCartProps){
-  const [totalPrice, setTotalPrice] = useState(0)
+function AddCart({count, priceDet, productDet, cartList, setCartList, setTotalPrice} : AddCartProps){
+  const [totalPriceProd, setTotalPriceProd] = useState(count*priceDet)
+  const {id, title, price} = productDet
+  const product = {id, title, price, amount : count}
+
+  function HandleUpdateProd(){
+    const cartListNew = useUpdateCart({cartList, product})
+    const total = cartListNew.reduce((total, product) => total + (product.amount * product.price), 0);
+    setCartList(cartListNew)
+    setTotalPrice(total)
+  }
 
   function CalcPrice(){
     const total = count*price
-    setTotalPrice(total)
+    setTotalPriceProd(total)
   }
 
   useEffect(()=>{
@@ -20,7 +41,7 @@ function AddCart({count, price} : AddCartProps){
   )
 
   return(
-    <button className={styles.buttonAdd}>{`Add to Cart $${totalPrice}`}</button>
+    <button onClick={HandleUpdateProd} className={styles.buttonAdd}>{`Updtae to Cart $${totalPriceProd}`}</button>
   )
 }
 

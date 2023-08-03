@@ -1,0 +1,5 @@
+.cartBox{
+    display: flex;
+    gap: 8px;
+    margin: 0px;
+}

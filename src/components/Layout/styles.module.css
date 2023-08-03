@@ -1,12 +1,12 @@
-.conteiner{
+.container{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-left: 10vw;
-    padding-right: 10vw;   
+    padding-right: 10vw;
 }
 
-.conteiner p, .conteiner a{
+.container p, .container a{
     color: white;
 }
 
@@ -15,4 +15,6 @@ header {
     height: 60px;
     background-color: rgba(13, 13, 13, 1);
     margin-bottom: 1px; 
+    position: sticky;
+    top: 0;
 }
