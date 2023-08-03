@@ -29,7 +29,7 @@ function ProductDetails(){
         <>
         <section className={styles.boxProduct}>
             <ProdDetImage data={data}/>
-            <ProdDetDetails data={data} cartList={cartContext.cartList} setCartList={cartContext.setCartList}/>
+            <ProdDetDetails data={data} cartList={cartContext.cartList} setCartList={cartContext.setCartList} setTotalPrice={cartContext.setTotalPrice} />
         </section>
         </>
     )

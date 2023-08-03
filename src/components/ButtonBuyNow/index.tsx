@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import styles from './styles.module.css'
 import { CartItem } from "../../Context/CartContext";
 import { useUpdateCart } from "../../hooks/useAddCart";
@@ -9,12 +9,11 @@ interface AddCartProps{
   priceDet : number
   cartList : CartItem[];
   setCartList: Dispatch<SetStateAction<CartItem[]>>;
-  setTotalPrice: Dispatch<SetStateAction<number>>;
   productDet : {
     id : number;
     title : string;
     price : number;
-    description : string;
+    description ?: string;
     amount: number;
   }
 }

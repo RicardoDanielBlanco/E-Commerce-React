@@ -37,7 +37,6 @@ function CartProvider({children} : CartProviderProps){
       {children}
     </CartContext.Provider>
   )
-
 }
 
 export default CartProvider;

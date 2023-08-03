@@ -15,11 +15,12 @@ interface ProdDetProps{
   }
   cartList : CartItem[];
   setCartList: Dispatch<SetStateAction<CartItem[]>>;
+  setTotalPrice: Dispatch<SetStateAction<number>>;
 }
 
-function ProdDetDetails({data, cartList, setCartList}:  ProdDetProps){
+function ProdDetDetails({data, cartList, setCartList, setTotalPrice}:  ProdDetProps){
   const includeProd = cartList.some((item) => item.id === data.id);
-  const product = includeProd ? cartList.find((item) => item.id === data.id) : data;
+  const product = includeProd ? cartList.find((item) => item.id === data.id) || data : data;
   console.log(product)
   const [count, setCount] = useState(product?.amount || 0);
 
@@ -41,7 +42,7 @@ function ProdDetDetails({data, cartList, setCartList}:  ProdDetProps){
       <div>
         <CountProduct count={count} setCount={setCount}/>
         <div>
-          <AddCart count={count} priceDet={data.price} productDet={product} cartList={cartList} setCartList={setCartList}/>
+          <AddCart count={count} productDet={product} cartList={cartList} setCartList={setCartList} setTotalPrice={setTotalPrice} />
           <ButtonBuyNow count={count} priceDet={data.price} productDet={product} cartList={cartList} setCartList={setCartList} />
         </div>
       </div>

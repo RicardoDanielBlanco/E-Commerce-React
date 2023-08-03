@@ -5,7 +5,6 @@ import { useUpdateCart } from "../../hooks/useAddCart";
 
 interface AddCartProps{
   count : number;
-  priceDet : number
   cartList : CartItem[];
   setCartList: Dispatch<SetStateAction<CartItem[]>>;
   setTotalPrice: Dispatch<SetStateAction<number>>;
@@ -13,15 +12,15 @@ interface AddCartProps{
     id : number;
     title : string;
     price : number;
-    description : string;
+    description ?: string;
     amount: number;
   }
 }
 
-function AddCart({count, priceDet, productDet, cartList, setCartList, setTotalPrice} : AddCartProps){
-  const [totalPriceProd, setTotalPriceProd] = useState(count*priceDet)
+function AddCart({count, productDet, cartList, setCartList, setTotalPrice} : AddCartProps){
   const {id, title, price} = productDet
   const product = {id, title, price, amount : count}
+  const [totalPriceProd, setTotalPriceProd] = useState(count*product.price)
 
   function HandleUpdateProd(){
     const cartListNew = useUpdateCart({cartList, product})
