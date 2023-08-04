@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction, createContext, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction, createContext, useEffect, useState } from "react";
 
 
 export const CartContext = createContext<CartContextType>(
@@ -27,10 +27,17 @@ interface CartProviderProps {
 }
 
 function CartProvider({children} : CartProviderProps){
-  const [cartList, setCartList] = useState<CartItem[]>([])
-  const [totalPrice, setTotalPrice] = useState(0)
+  let total = 0;
+  const [cartList, setCartList] = useState<CartItem[]>(JSON.parse(localStorage.getItem('cartList') ?? '[]'))
+  if (localStorage.getItem('cartList') !== null ){
+    total = cartList.reduce((total, product) => total + (product.amount * product.price), 0);
+  }
+  const [totalPrice, setTotalPrice] = useState(total)
   const value = {cartList, setCartList, totalPrice, setTotalPrice}
 
+  useEffect(()=>{
+    localStorage.setItem('cartList', JSON.stringify(cartList));
+  }, [cartList])
 
   return (
     <CartContext.Provider value={value}>

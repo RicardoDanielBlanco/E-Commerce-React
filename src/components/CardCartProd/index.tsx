@@ -1,20 +1,65 @@
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import CountProduct from '../Count';
 import styles from './styles.module.css'
+import { UpdateCart } from '../../hooks/useAddCart';
+import { CartItem } from '../../Context/CartContext';
 
-function CardCartProd(){
+interface CardCartProps {
+  prod : {
+    id : number;
+    title : string;
+    price : number;
+    amount : number;
+  }
+  cartList : CartItem[];
+  setCartList: Dispatch<SetStateAction<CartItem[]>>;
+  setTotalPrice: Dispatch<SetStateAction<number>>;
+}
+
+function CardCartProd({prod, cartList, setCartList, setTotalPrice} : CardCartProps){
+  const [product, setProduct] = useState(prod)
+  const subTotal = (prod.price*prod.amount)
+  const [count, setCount] = useState(prod.amount);
+
+  function UpdateProd(){
+    if (count === 0){
+      handleRemoveProduct()
+    } else {
+      const {id, title, price} = product
+      const Product = {id, title, price, amount : count}
+      setProduct(Product)
+      const cartListNew = UpdateCart({cartList, product : Product})
+      setCartList(cartListNew)
+      const total = cartListNew.reduce((total, product) => total + (product.amount * product.price), 0);
+      setTotalPrice(total)
+    }
+  }
+
+  function handleRemoveProduct(){
+    const cartListNew = cartList.filter((item) => item.id !== product.id)
+    setCartList(cartListNew)
+    const total = cartListNew.reduce((total, product) => total + (product.amount * product.price), 0);
+    setTotalPrice(total)
+  }
+
+  useEffect(()=>{
+    UpdateProd()
+  }, [count]
+  )
   
   return(
-    <article className={styles.boxProd}>
-      <div className={styles.boxImage}></div>
-      <div className={styles.boxDetails}>
-        <h4>Men’s winter jacket</h4>
-        <p>Size: L</p>
-        <p>Quantity: 1</p>
-        <h4>$99</h4>
-      </div>
-      <div className={styles.boxRemove}>
-        <p>Remove</p>
-      </div>
-    </article>
+      <article className={styles.boxProd}>
+        <div className={styles.boxImage}></div>
+        <div className={styles.boxDetails}>
+          <h4>{product.title}</h4>
+          <p>{`Unit price: $${product.price}`}</p>
+          <CountProduct count={count} setCount={setCount} classname='Small'/>
+          <h4>{`$${subTotal}`}</h4>
+        </div>
+        <div className={styles.boxRemove}>
+          <p onClick={handleRemoveProduct}>Remove</p>
+        </div>
+      </article>
   )
 }
 

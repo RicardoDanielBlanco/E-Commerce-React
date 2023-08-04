@@ -21,7 +21,6 @@ interface ProdDetProps{
 function ProdDetDetails({data, cartList, setCartList, setTotalPrice}:  ProdDetProps){
   const includeProd = cartList.some((item) => item.id === data.id);
   const product = includeProd ? cartList.find((item) => item.id === data.id) || data : data;
-  console.log(product)
   const [count, setCount] = useState(product?.amount || 0);
 
   useEffect(() => {
@@ -40,7 +39,7 @@ function ProdDetDetails({data, cartList, setCartList, setTotalPrice}:  ProdDetPr
         <p>{data.description}</p>
       </div>
       <div>
-        <CountProduct count={count} setCount={setCount}/>
+        <CountProduct count={count} setCount={setCount} classname='Big' />
         <div>
           <AddCart count={count} productDet={product} cartList={cartList} setCartList={setCartList} setTotalPrice={setTotalPrice} />
           <ButtonBuyNow count={count} priceDet={data.price} productDet={product} cartList={cartList} setCartList={setCartList} />
