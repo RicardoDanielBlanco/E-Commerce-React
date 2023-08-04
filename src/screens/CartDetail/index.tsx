@@ -12,7 +12,7 @@ function CartDetail(){
       <h1>Your cart</h1>
       <div className={styles.boxFlex}>
         <ShoppingList cartList={cartContext.cartList} setCartList={cartContext.setCartList} setTotalPrice={cartContext.setTotalPrice} />
-        <ShoppingSummary totalPrice={cartContext.totalPrice} />
+        <ShoppingSummary totalPrice={cartContext.totalPrice} setCartList={cartContext.setCartList} setTotalPrice={cartContext.setTotalPrice} />
       </div>
 
     </section>

@@ -5,12 +5,7 @@ import { UpdateCart } from '../../hooks/useAddCart';
 import { CartItem } from '../../Context/CartContext';
 
 interface CardCartProps {
-  prod : {
-    id : number;
-    title : string;
-    price : number;
-    amount : number;
-  }
+  prod : CartItem;
   cartList : CartItem[];
   setCartList: Dispatch<SetStateAction<CartItem[]>>;
   setTotalPrice: Dispatch<SetStateAction<number>>;
@@ -25,8 +20,8 @@ function CardCartProd({prod, cartList, setCartList, setTotalPrice} : CardCartPro
     if (count === 0){
       handleRemoveProduct()
     } else {
-      const {id, title, price} = product
-      const Product = {id, title, price, amount : count}
+      const {id, title, price, images} = product
+      const Product = {id, title, price, images, amount : count}
       setProduct(Product)
       const cartListNew = UpdateCart({cartList, product : Product})
       setCartList(cartListNew)
@@ -49,7 +44,9 @@ function CardCartProd({prod, cartList, setCartList, setTotalPrice} : CardCartPro
   
   return(
       <article className={styles.boxProd}>
-        <div className={styles.boxImage}></div>
+        <div className={styles.boxImage}>
+          <img src={product.images} alt={product.title} />
+        </div>
         <div className={styles.boxDetails}>
           <h4>{product.title}</h4>
           <p>{`Unit price: $${product.price}`}</p>

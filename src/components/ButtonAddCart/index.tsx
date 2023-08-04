@@ -13,13 +13,14 @@ interface AddCartProps{
     title : string;
     price : number;
     description ?: string;
+    images : string
     amount: number;
   }
 }
 
 function AddCart({count, productDet, cartList, setCartList, setTotalPrice} : AddCartProps){
-  const {id, title, price} = productDet
-  const product = {id, title, price, amount : count}
+  const {id, title, price, images} = productDet
+  const product = {id, title, price, images , amount : count}
   const [totalPriceProd, setTotalPriceProd] = useState(count*product.price)
 
   function HandleUpdateProd(){

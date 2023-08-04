@@ -11,6 +11,7 @@ interface ProdDetProps{
     title : string;
     price : number;
     description : string;
+    images : string;
     amount: number;
   }
   cartList : CartItem[];

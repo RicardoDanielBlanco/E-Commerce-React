@@ -1,6 +1,5 @@
 import { Dispatch, ReactNode, SetStateAction, createContext, useEffect, useState } from "react";
 
-
 export const CartContext = createContext<CartContextType>(
   {cartList: [],
   setCartList: () => {},
@@ -13,6 +12,7 @@ export interface CartItem {
   title: string;
   price: number;
   amount: number;
+  images: string;
 }
 
 interface CartContextType {

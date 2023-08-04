@@ -10,7 +10,6 @@ export interface CartContextType{
 }
 
 function ShoppingList({cartList, setCartList, setTotalPrice}:CartContextType){
-
   return(
     <div className={styles.boxProductList}>
       <div className={styles.p01}>

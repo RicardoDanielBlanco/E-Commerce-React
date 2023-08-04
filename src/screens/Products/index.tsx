@@ -14,7 +14,6 @@ import ModalDetele from '../../components/ModalDetele';
 import AddProductButton from '../../components/AddProductButton';
 import {CartContext} from '../../Context/CartContext';
 
-
 export interface product {
   id : number;
   images : string;
@@ -31,11 +30,17 @@ function Products(){
   const authContext = useContext(AuthContext);
   const cartContext = useContext(CartContext);
   const [id, setId] = useState<number | null>(null)
+  const [limit, setLimit] = useState(12)
   
-  const {data : products, error, isLoading, refetch} = useQuery([KEY_PRODUCT, selectedOption], () => fetchDataProduct(`${URL_PRODUCT}?offset=0&limit=12`, selectedOption))
+  const {data : products, error, isLoading, refetch} = useQuery([KEY_PRODUCT, selectedOption, limit], () => fetchDataProduct(`${URL_PRODUCT}?offset=0&limit=${limit}`, selectedOption))
 
   function handleCheckboxChange(event: ChangeEvent<HTMLInputElement>){
     setSelectedOption(event.target.value)
+  }
+
+  function handleLoadMore(){
+    const newLimit = limit + 12
+    setLimit(newLimit)
   }
 
   if (isLoading) {
@@ -59,7 +64,6 @@ function Products(){
         <FilterBox handleCheckboxChange={handleCheckboxChange} selectedOption={selectedOption}></FilterBox>
       </div>
       <div className={styles.productsBox}>
-        <p>Showing 1003 Products</p>
         <div className={styles.productsList}>
           {products && (products.map((product : product)=>{
             return (
@@ -80,7 +84,7 @@ function Products(){
           <ModalDetele setOpenModal={setOpenModal} URL={URL_PRODUCT} id={id} afterDelete={() => refetch()} />
         </Modal>
         }
-        <button>Load more products</button>
+        <button id={styles.Load} onClick={handleLoadMore} >Load more products</button>
       </div>
     </div>
     </>

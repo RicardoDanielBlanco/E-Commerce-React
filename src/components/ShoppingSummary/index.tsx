@@ -1,10 +1,23 @@
+import { useNavigate } from 'react-router-dom'
 import styles from './styles.module.css'
+import { Dispatch, SetStateAction } from 'react';
+import { CartItem } from '../../Context/CartContext';
 
 interface SummaryProps{
-  totalPrice:number
+  totalPrice:number;
+  setCartList: Dispatch<SetStateAction<CartItem[]>>;
+  setTotalPrice: Dispatch<SetStateAction<number>>;
 }
 
-function ShoppingSummary({totalPrice}:SummaryProps){
+function ShoppingSummary({totalPrice, setCartList, setTotalPrice}:SummaryProps){
+  const navigate = useNavigate()
+  
+  function handleSuccess(){
+    localStorage.removeItem('cartList')
+    setCartList([])
+    setTotalPrice(0)
+    navigate('/cart-detail/successfulpurchase')
+  }
 
   return(
     <div>
@@ -25,7 +38,7 @@ function ShoppingSummary({totalPrice}:SummaryProps){
           <p>{`$${totalPrice}`}</p>
         </div>
       </div>
-      <button>Continue to checkout</button>
+      <button onClick={handleSuccess}>Finalize purchase</button>
     </div>
   )
 }

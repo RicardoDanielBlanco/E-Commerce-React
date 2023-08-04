@@ -19,7 +19,7 @@ export function Layout(){
     <>
     <header>
       <div className={styles.container}>
-        <NavOptions />
+        <NavOptions role={authContext.role} />
         <NavCartLog user={user} totalPrice={totalPrice} cartListAmount={cartListAmount} />
       </div>
     </header>

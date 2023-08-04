@@ -16,8 +16,8 @@ export interface AddCartProps{
 function AddProductButton({cartList, product, setCartList, user, setTotalPrice}:AddCartProps){
   const location = useLocation();
   product.amount=1
-  const {id, title, price, amount} = product
-  const productAdd = {id, title, price, amount}
+  const {id, title, price, images, amount} = product
+  const productAdd = {id, title, price, images, amount}
 
   function HandleAddProd(){
     const cartListNew = useAddCart({cartList, productAdd})

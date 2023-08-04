@@ -12,6 +12,12 @@
     flex-shrink: 0;
 }
 
+.boxImage img{
+    height: 133px;
+    width: 100%;
+    object-fit: cover;
+}
+
 .boxDetails h4, .boxDetails p {
     color: #000;
     margin: 0px;
