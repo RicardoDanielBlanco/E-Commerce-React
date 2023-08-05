@@ -12,11 +12,13 @@ interface dataCreateProduct {
   title : string;
   price : string;
   description : string;
-  categoryId : string;
+  category : {
+    id : string};
   images : string[]
 }
 
 function ProductEdit(){
+  const [message, setMessage] = useState(false)
   const {id} = useParams()
   const {data, error, isLoading} = useQuery(['ProductDetails'], () => fetchDataProduct(`${URL_PRODUCT}${id}`,''))
   const [data1, setData1] = useState({
@@ -34,6 +36,7 @@ function ProductEdit(){
     },{
       onSuccess(){
         console.log('Producto editado con éxito')
+        setMessage(true)
         }
     })
   
@@ -53,7 +56,7 @@ function ProductEdit(){
       const imagesArray: string[] = [images];
 
       const product : dataCreateProduct = {
-        title, price, description, categoryId, images: imagesArray};
+        title, price, description, category: { id: categoryId }, images: imagesArray};
 
       createProdMutation.mutate(product)
     }
@@ -81,6 +84,7 @@ function ProductEdit(){
               <input type="number" name="categoryId" id="categoryId" placeholder="categoryId" defaultValue={data1.category.id} />
               <input type="text" name="images" id="images" placeholder="images" defaultValue={data1.images}/>
               <button type="submit">Edit</button>
+              {message && <p>Product edited successfully.</p>}
             </form>
           </div>
           </>

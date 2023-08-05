@@ -39,7 +39,8 @@ function App() {
                 <Route path='/logout' element={<Logout />}/>
                 <Route path='/categories' element={<Categories />}/>
                 <Route path='/products' element={<Products />}/>
-                <Route path='/products/:id' element={<ProductDetails />}/>
+                <Route path='/products/:propsearch' element={<Products />}/>
+                <Route path='/products/details/:id' element={<ProductDetails />}/>
                 <Route path='/products/create' element={<RequireRole><ProductCreate /></RequireRole>}/>
                 <Route path='/products/edit/:id' element={<RequireRole><ProductEdit /></RequireRole> }/>
                 <Route path='/categories/create' element={<RequireRole><CategoriesCreate /></RequireRole>}/>

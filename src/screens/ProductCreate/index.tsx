@@ -1,7 +1,7 @@
 import { useMutation } from 'react-query';
 import styles from './styles.module.css'
 import axios from 'axios';
-import { FormEvent, useRef } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import { URL_PRODUCT } from '../../global/constant';
 
 
@@ -14,13 +14,14 @@ interface dataCreateProduct {
   }
 
 function ProductCreate(){
+    const [message, setMessage] = useState(false)
     const form = useRef<HTMLFormElement | null>(null)
     const createProdMutation = useMutation((product: dataCreateProduct)=>{
         return axios.post(URL_PRODUCT, product)
       },{
         onSuccess(data){
             console.log(data)
-            console.log('Producto creado con éxito')
+            setMessage(true)
             }
       })
     
@@ -56,6 +57,7 @@ function ProductCreate(){
             <input type="number" name="categoryId" id="categoryId" placeholder="categoryId"required />
             <input type="text" name="images" id="images" placeholder="images" required/>
             <button type="submit">Create</button>
+            {message && <p>Product created successfully.</p>}
           </form>
         </div>
         </>

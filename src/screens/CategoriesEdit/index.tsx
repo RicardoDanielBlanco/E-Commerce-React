@@ -14,6 +14,7 @@ interface dataCategory {
 }
 
 function CategoriesEdit(){
+    const [message, setMessage] = useState(false)
     const {id} = useParams()
     const {data, error, isLoading} = useQuery(['CategoryDetails'], () => fetchDataProduct(`${URL_CATEGORY}${id}`,''))
     const [data1, setData1] = useState({
@@ -26,13 +27,15 @@ function CategoriesEdit(){
     },{
       onSuccess(data){
           console.log(data)
-          console.log('Categoría editada con éxito')
+          setMessage(true)
           }
     })
   
-  useEffect(()=>{
-    setData1(data)
-  }, [data])
+    useEffect(() => {
+      if (data) {
+        setData1(data);
+      }
+    }, [data]);
 
   function handleEditCategory(event: FormEvent<HTMLFormElement>) {
       event.preventDefault();
@@ -64,6 +67,7 @@ function CategoriesEdit(){
             <input type="text" name="name" id="name" placeholder="name" defaultValue={data1.name}/>
             <input type="text" name="image" id="image" placeholder="image" defaultValue={data1.image}/>
             <button type="submit">Edit</button>
+            {message && <p>Category edited successfully.</p>}
           </form>
         </div>
         </>

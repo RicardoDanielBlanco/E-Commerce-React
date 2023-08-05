@@ -37,7 +37,7 @@ function Categories(){
           <>
           <div className={styles.conteinerTitle}>
             <h2>Categories</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima veniam suscipit dolorem sequi voluptate laborum ex! Quia illo consectetur distinctio numquam, accusantium nam, ipsum neque, id nulla dolores itaque a.</p>
+            <p>Discover eco-friendly fashion, high-quality garments with sustainable style to protect our planet. Embrace responsible fashion and make a difference with us.</p>
             <ButtonLink text={'Shop All'} route={'/products'}/>
           </div>
           <div className={styles.conteiner}>

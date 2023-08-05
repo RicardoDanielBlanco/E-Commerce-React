@@ -14,3 +14,32 @@ ul{
   margin: 0px ;
   list-style: none;
 }
+
+.NavOptions form{
+  display: flex;
+  width: 185px;
+  height: 30px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.searchButton{
+  width: 20px;
+  height: 20px;
+  background-image: url('../../../public/Search.svg');
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+}
+
+.NavOptions input{
+  height: 25px;
+  width: 150px;
+  color: white;
+  background-color: rgba(13, 13, 13, 1);
+  border: 0px;
+}
+
+.NavOptions form button{
+  background-color: rgba(13, 13, 13, 1);
+}
