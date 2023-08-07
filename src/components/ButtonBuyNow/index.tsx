@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import styles from './styles.module.css'
 import { CartItem } from "../../Context/CartContext";
-import { useUpdateCart } from "../../hooks/useAddCart";
+import { UpdateCart } from "../../hooks/useAddCart";
 import { useNavigate } from "react-router-dom";
 
 interface AddCartProps{
@@ -14,17 +14,18 @@ interface AddCartProps{
     title : string;
     price : number;
     description ?: string;
+    images : string;
     amount: number;
   }
 }
 
 function ButtonBuyNow({count, productDet, cartList, setCartList} : AddCartProps){
     const navigate = useNavigate();
-    const {id, title, price} = productDet
-    const product = {id, title, price, amount : count}
+    const {id, title, price, images} = productDet
+    const product = {id, title, price, images, amount : count}
   
     function HandleUpdateProd(){
-      const cartListNew = useUpdateCart({cartList, product})
+      const cartListNew = UpdateCart({cartList, product})
       setCartList(cartListNew)
       navigate("/cart-detail")
     }

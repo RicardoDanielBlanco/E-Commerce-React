@@ -1,7 +1,22 @@
+import ShoppingList from "../../components/ShoppingList";
+import ShoppingSummary from "../../components/ShoppingSummary";
+import styles from './styles.module.css'
+import {CartContext} from '../../Context/CartContext';
+import { useContext } from "react";
+
 function CartDetail(){
-    return(
-        <h1>CartDetail</h1>
-    )
+  const cartContext = useContext(CartContext);
+
+  return(
+    <section className={styles.boxScreen}>
+      <h1>Your cart</h1>
+      <div className={styles.boxFlex}>
+        <ShoppingList cartList={cartContext.cartList} setCartList={cartContext.setCartList} setTotalPrice={cartContext.setTotalPrice} />
+        <ShoppingSummary totalPrice={cartContext.totalPrice} setCartList={cartContext.setCartList} setTotalPrice={cartContext.setTotalPrice} />
+      </div>
+
+    </section>
+  )
 }
 
 export default CartDetail;

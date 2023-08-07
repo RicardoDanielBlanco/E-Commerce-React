@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './styles.module.css'
-import { FormEvent, useContext } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 import { useMutation } from 'react-query';
 import axios from 'axios';
 import { AuthContext } from '../../Context/AuthContext';
@@ -17,6 +17,7 @@ function Login(){
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
   const authContext = useContext(AuthContext);
+  const [message, setMessage] = useState(false)
   
   const signinMutation = useMutation((user:userLoginData)=>{
     return axios.post(URL_AUTH_LOGIN, user)
@@ -34,6 +35,7 @@ function Login(){
         console.error('Error al iniciar sesión:', error);
       }
     },
+    onError: ()=>{setMessage(true)}
   });
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -56,6 +58,7 @@ function Login(){
         <input type="email" name="email" id="email" placeholder="Email"/>
         <input type="password" name="password" id="password" placeholder="Password"/>
         <button type="submit">Login</button>
+        {message && <p>Verify that the username and/or password are correct.</p> }
       </form>
     </div>
     <div>

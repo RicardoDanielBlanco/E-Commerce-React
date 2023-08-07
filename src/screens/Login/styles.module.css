@@ -1,5 +1,5 @@
 .loginBox{
-    height: 289px;
+    width: 465px;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -9,14 +9,19 @@
     box-sizing: border-box;
 }
 
+.loginBox a{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
 .loginBox h4 {
     color: var(--colors-base-color-6, #111);
-    /* Heading 04 */
     font-family: Public Sans;
     font-size: 22px;
     font-style: normal;
     font-weight: 600;
-    line-height: 30px; /* 136.364% */
+    line-height: 30px;
     letter-spacing: -0.55px;
     margin: 0px;
 }

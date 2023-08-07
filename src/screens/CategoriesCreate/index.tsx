@@ -1,5 +1,5 @@
 import axios from "axios"
-import { FormEvent, useRef } from "react"
+import { FormEvent, useRef, useState } from "react"
 import { useMutation } from "react-query"
 import { URL_CATEGORY } from "../../global/constant";
 import styles from '../ProductCreate/styles.module.css'
@@ -10,13 +10,14 @@ interface dataCreateCategory {
 }
 
 function CategoriesCreate(){
+  const [message, setMessage] = useState(false)
   const form = useRef<HTMLFormElement | null>(null)
   const createCategoryMutation = useMutation((category: dataCreateCategory)=>{
       return axios.post(URL_CATEGORY, category)
     },{
       onSuccess(data){
           console.log(data)
-          console.log('Categoría creada con éxito')
+          setMessage(true)
           }
     })
   
@@ -42,6 +43,7 @@ function CategoriesCreate(){
           <input type="text" name="name" id="name" placeholder="name" required/>
           <input type="text" name="image" id="image" placeholder="image" required/>
           <button type="submit">Create</button>
+          {message && <p>Category created successfully.</p>}
         </form>
       </div>
       </>

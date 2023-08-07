@@ -24,9 +24,9 @@ export function useAddCart({cartList, productAdd}:AddCartProps){
   }
 }
 
-export function useUpdateCart({cartList, product}:UpdateCartProps){
-  const {id, title, price, amount} = product
-  const productAdd = {id, title, price, amount}
+export function UpdateCart({cartList, product}:UpdateCartProps){
+  const {id, title, price, images, amount} = product
+  const productAdd = {id, title, price, images, amount}
   const includeProd = cartList.some((item) => item.id === productAdd.id);
 
   if (!includeProd){

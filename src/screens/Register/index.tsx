@@ -1,5 +1,5 @@
 import { useMutation } from 'react-query';
-import styles from './styles.module.css'
+import styles from '../Login/styles.module.css'
 import axios from 'axios';
 import { FormEvent, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -19,8 +19,7 @@ function Register(){
     const registerMutation = useMutation((user: userProfileData )=>{
         return axios.post(URL_USER, user)
       },{
-        onSuccess(data){
-            console.log(data)
+        onSuccess(){
             setShowMessage(true);
             setTimeout(() => {
             navigate(from, { replace: true });

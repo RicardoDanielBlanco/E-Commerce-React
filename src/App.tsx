@@ -19,6 +19,8 @@ import RequireRole from './components/RequireRole';
 import CategoriesCreate from './screens/CategoriesCreate';
 import CategoriesEdit from './screens/CategoriesEdit';
 import CartProvider from './Context/CartContext';
+import SuccessfulPurchase from './screens/SuccessfulPurchase';
+import NotFound from './screens/NotFound';
 
 const queryClient = new QueryClient()
 
@@ -37,12 +39,17 @@ function App() {
                 <Route path='/logout' element={<Logout />}/>
                 <Route path='/categories' element={<Categories />}/>
                 <Route path='/products' element={<Products />}/>
-                <Route path='/products/:id' element={<ProductDetails />}/>
+                <Route path='/products/:propsearch' element={<Products />}/>
+                <Route path='/products/details/:id' element={<ProductDetails />}/>
                 <Route path='/products/create' element={<RequireRole><ProductCreate /></RequireRole>}/>
                 <Route path='/products/edit/:id' element={<RequireRole><ProductEdit /></RequireRole> }/>
                 <Route path='/categories/create' element={<RequireRole><CategoriesCreate /></RequireRole>}/>
                 <Route path='/categories/edit/:id' element={<RequireRole><CategoriesEdit /></RequireRole> }/>
                 <Route path='/cart-detail' element={<RequireAuth><CartDetail /></RequireAuth>} />
+                <Route path='/cart-detail/successfulpurchase' element={<RequireAuth><SuccessfulPurchase /></RequireAuth>} />
+              </Route>
+              <Route>
+                <Route path='*' element={<NotFound/>}/>
               </Route>
             </Routes>
           </CartProvider>
